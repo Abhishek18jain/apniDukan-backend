@@ -11,8 +11,8 @@ import cookieParser from "cookie-parser";
 import dashboardRoutes from "./routes/dashboardRoutes.js"
 import otpRoutes from "./routes/otpRoutes.js"
 import itembillRoutes from './routes/itembillRoutes.js';
-// import customerRoutes from './routes/CustomerRoutes.js';
-import transactionRoutes from './routes/TranscationRoutes.js';
+
+import transactionRoutes from './routes/transcationRoutes.js';
 
 dotenv.config();
 
