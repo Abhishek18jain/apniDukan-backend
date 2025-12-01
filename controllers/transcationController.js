@@ -159,3 +159,22 @@ export const getCustomerTransactions = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
+// -----------------------------------------------------
+//delete customer
+export const deleteCustomer = async (req, res) => {
+  try {
+    const deleted = await Customer.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id
+    });
+    if (!deleted)
+      return res.status(404).json({ message: "Customer not found" });
+    // Also delete related transactions
+    await Transaction.deleteMany({ customer: req.params.id, user: req.user._id });
+
+    return res.status(200).json({ success: true, message: "Customer and related transactions deleted" });     
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
